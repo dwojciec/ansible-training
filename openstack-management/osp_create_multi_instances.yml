@@ -1,0 +1,47 @@
+- hosts: jumpbox
+  gather_facts: false
+  vars:
+    the3tier_info:
+        - { name: 'app1', group: 'apps_group', fip: '', pip: '' }
+        - { name: 'app2', group: 'apps_group', fip: '', pip: '' }
+        - { name: 'frontend', group: 'frontend_group', fip: '', pip: '' }
+        - { name: 'appdb1', group: 'appdb_group', fip: '', pip: '' }
+    flavor_name: m2.small
+    deployment: dev
+  tasks:
+  - name: Create a server instance
+    os_server:
+      cloud: ospcloud
+      name: "{{ item.name }}"
+      image: small-rhel
+      meta: "group={{ item.group }},deployment_name={{ deployment }}"
+      flavor: "{{ flavor_name }}"
+      security_groups: ICMP_and_SSH
+      key_name: ansible_ssh
+      nics:
+      - net-name: int_network
+      userdata: |
+        #!/bin/bash
+        curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+        cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
+        curl -o /tmp/internal.repo http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
+        cp /tmp/internal.repo /etc/yum.repos.d/internal.repo
+    with_items: "{{ the3tier_info }}"
+
+  - name: Add floating IP to webserver
+    os_floating_ip:
+      cloud: ospcloud
+      state: present
+      reuse: yes
+      server: "{{ item.name }}"
+      network: ext_network
+      wait: true
+      timeout: 180
+    register: server_info
+    with_items: "{{ the3tier_info }}"
+      
+
+      #  - name: Show server public IP
+      #    debug: var=server_info.floating_ip.floating_ip_address
+      #  - name: Show server private IP
+      #    debug: var=server_info.openstack.private_v4
