@@ -26,6 +26,7 @@
   become: true
   roles:
     - common
+  delegate_to: workstation-bcff.rhpds.opentlc.com
 
 - name: configure dbserver
   hosts: appdbs
@@ -33,6 +34,7 @@
   become: true
   roles:
     - dbserver
+  delegate_to: workstation-bcff.rhpds.opentlc.com
 
 - name: configure wasserver and webserver
   hosts: apps
