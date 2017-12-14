@@ -2,7 +2,7 @@
   connection: local
   tasks:
     - name: create ssh config for jumphost in tower
-      shell: |
+      command: |
         echo 'Host workstation-bcff.rhpds.opentlc.com' >> .ssh/config
 #         Hostname workstation-bcff.rhpds.opentlc.com
 #         IdentityFile ~/.ssh/openstack.pem
