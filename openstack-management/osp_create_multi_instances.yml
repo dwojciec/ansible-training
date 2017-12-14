@@ -2,10 +2,10 @@
   gather_facts: false
   vars:
     the3tier_info:
-        - { name: 'app1', group: 'apps_group', fip: '', pip: '' }
-        - { name: 'app2', group: 'apps_group', fip: '', pip: '' }
-        - { name: 'frontend', group: 'frontend_group', fip: '', pip: '' }
-        - { name: 'appdb1', group: 'appdb_group', fip: '', pip: '' }
+        - { name: 'app1', group: 'apps' }
+        - { name: 'app2', group: 'apps' }
+        - { name: 'frontend', group: 'frontends' }
+        - { name: 'appdb1', group: 'appdbs'}
     flavor_name: m2.small
     deployment: dev
   tasks:
