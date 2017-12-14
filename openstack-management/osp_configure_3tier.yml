@@ -20,7 +20,7 @@
      with_items: "{{result.ansible_facts.openstack_servers}}"
 
 - name: configuration
-  hosts: appdb-group:apps-group:frontend-group
+  hosts: appdbs:apps:frontends
   #hosts: all
   gather_facts: false # remove later! speeds up testing
   become: true
@@ -28,14 +28,14 @@
     - common
 
 - name: configure dbserver
-  hosts: appdb_group
+  hosts: appdbs
   gather_facts: false # remove later! speeds up testing
   become: true
   roles:
     - dbserver
 
 - name: configure wasserver and webserver
-  hosts: apps_group
+  hosts: apps
   gather_facts: false # remove later! speeds up testing
   become: true
   roles:
@@ -43,7 +43,7 @@
     - webserver
 
 - name: configure frontends
-  hosts: frontend_group
+  hosts: frontends
   gather_facts: false # remove later! speeds up testing
   become: true
   roles:
