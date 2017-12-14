@@ -37,22 +37,25 @@
     name: tomcat
     state: started
 
-- name: open the network port 8080
-  firewalld:
-    port: 8080/tcp
-    permanent: true
-    state: enabled
-    immediate: true
+- name: flush iptables
+  shell: "iptables -F"
 
-- name: open the network port 80
-  firewalld:
-    port: 80/tcp
-    permanent: true
-    state: enabled
-    immediate: true
-- name: open the network port 22
-  firewalld:
-    port: 22/tcp
-    permanent: true
-    state: enabled
-    immediate: true
+#- name: open the network port 8080
+#  firewalld:
+#    port: 8080/tcp
+#    permanent: true
+#    state: enabled
+#    immediate: true
+#
+#- name: open the network port 80
+#  firewalld:
+#    port: 80/tcp
+#    permanent: true
+#    state: enabled
+#    immediate: true
+#- name: open the network port 22
+#  firewalld:
+#    port: 22/tcp
+#    permanent: true
+#    state: enabled
+#    immediate: true
