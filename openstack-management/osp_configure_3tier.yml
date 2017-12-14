@@ -3,8 +3,7 @@
   tasks:
     - name: create ssh config for jumphost in tower
       shell: |
-        echo $(hostname)
-#        echo 'Host workstation-bcff.rhpds.opentlc.com
+        echo 'Host workstation-bcff.rhpds.opentlc.com' > ~/.ssh/config
 #         Hostname workstation-bcff.rhpds.opentlc.com
 #         IdentityFile ~/.ssh/openstack.pem
 #         ForwardAgent yes
