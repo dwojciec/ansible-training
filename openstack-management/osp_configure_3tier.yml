@@ -3,22 +3,18 @@
   tasks:
     - name: create ssh config for jumphost in tower
       shell: 
-        cmd: |
-          touch ~/.ssh/config
-          cat <<EOF > ~/.ssh/config
-          Host workstation-bcff.rhpds.opentlc.com
-           Hostname workstation-bcff.rhpds.opentlc.com
-           IdentityFile ~/.ssh/openstack.pem
-           ForwardAgent yes
-           User cloud-user
-           StrictHostKeyChecking no
-           PasswordAuthentication no
-          Host 10.10.10.*
-           User cloud-user
-           IdentityFile ~/.ssh/openstack.pem
-           ProxyCommand ssh -F ./ssh.cfg cloud-user@workstation-bcff.rhpds.opentlc.com -W %h:%p -vvv
-           StrictHostKeyChecking no
-          EOF
+        echo ' Host workstation-bcff.rhpds.opentlc.com
+         Hostname workstation-bcff.rhpds.opentlc.com
+         IdentityFile ~/.ssh/openstack.pem
+         ForwardAgent yes
+         User cloud-user
+         StrictHostKeyChecking no
+         PasswordAuthentication no
+        Host 10.10.10.*
+         User cloud-user
+         IdentityFile ~/.ssh/openstack.pem
+         ProxyCommand ssh -F ./ssh.cfg cloud-user@workstation-bcff.rhpds.opentlc.com -W %h:%p -vvv
+         StrictHostKeyChecking no' > ~/.ssh/config
 
 - hosts: jumpbox
   gather_facts: false
