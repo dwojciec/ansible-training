@@ -24,29 +24,27 @@
   #hosts: all
   gather_facts: false # remove later! speeds up testing
   become: true
-  tasks:
-    - include_role:
-        name: common
-      delegate_to: workstation-bcff.rhpds.opentlc.com
+  roles:
+    - common
 
-#- name: configure dbserver
-#  hosts: appdbs
-#  gather_facts: false # remove later! speeds up testing
-#  become: true
-#  roles:
-#    - dbserver
-#
-#- name: configure wasserver and webserver
-#  hosts: apps
-#  gather_facts: false # remove later! speeds up testing
-#  become: true
-#  roles:
-#    - wasserver
-#    - webserver
-#
-#- name: configure frontends
-#  hosts: frontends
-#  gather_facts: false # remove later! speeds up testing
-#  become: true
-#  roles:
-#    - proxy
+- name: configure dbserver
+  hosts: appdbs
+  gather_facts: false # remove later! speeds up testing
+  become: true
+  roles:
+    - dbserver
+
+- name: configure wasserver and webserver
+  hosts: apps
+  gather_facts: false # remove later! speeds up testing
+  become: true
+  roles:
+    - wasserver
+    - webserver
+
+- name: configure frontends
+  hosts: frontends
+  gather_facts: false # remove later! speeds up testing
+  become: true
+  roles:
+    - proxy
