@@ -21,6 +21,7 @@
       include_role:
         name: common
       delegate_to: "{{item.public_v4}}"
+      remote_user: cloud-user
       with_items: "{{result.ansible_facts.openstack_servers}}"
 
 #- name: configuration
