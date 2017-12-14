@@ -27,7 +27,6 @@
   tasks:
     - include_role:
         name: common
-      delegate_to: workstation-bcff.rhpds.opentlc.com
 
 - name: configure dbserver
   hosts: appdbs
@@ -36,7 +35,6 @@
   tasks:
     - include_role:
         name: dbserver
-      delegate_to: workstation-bcff.rhpds.opentlc.com
 
 - name: configure wasserver and webserver
   hosts: apps
@@ -48,7 +46,6 @@
       delegate_to: workstation-bcff.rhpds.opentlc.com
     - include_role:
         name: webserver
-      delegate_to: workstation-bcff.rhpds.opentlc.com
 
 - name: configure frontends
   hosts: frontends
@@ -57,4 +54,3 @@
   tasks:
     - include_role:
         name: proxy
-      delegate_to: workstation-bcff.rhpds.opentlc.com
