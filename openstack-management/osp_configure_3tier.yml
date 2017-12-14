@@ -4,7 +4,7 @@
     - name: create ssh config for jumphost in tower
       shell: 
         cmd: |
-          mkdir ~/.ssh
+          touch ~/.ssh/config
           cat <<EOF > ~/.ssh/config
           Host workstation-bcff.rhpds.opentlc.com
            Hostname workstation-bcff.rhpds.opentlc.com
