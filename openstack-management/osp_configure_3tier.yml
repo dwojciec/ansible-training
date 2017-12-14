@@ -21,7 +21,7 @@
          User cloud-user
          IdentityFile ~/.ssh/openstack.pem
          ProxyCommand ssh -F ssh.cfg cloud-user@workstation-bcff.rhpds.opentlc.com -W %h:%p -vvv
-         StrictHostKeyChecking no' >> ~/.ssh/config
+         StrictHostKeyChecking no' > ssh.cfg 
 
 - hosts: jumpbox
   gather_facts: false
