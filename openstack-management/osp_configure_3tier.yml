@@ -9,7 +9,7 @@
 #        dest: "ssh.cfg"
           
     - name: where am i
-      command: "pwd"
+      command: "ls -al"
     - name: create ssh config for jumphost in tower
       shell: 
         cmd: |
