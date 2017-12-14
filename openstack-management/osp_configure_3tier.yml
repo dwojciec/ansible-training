@@ -1,7 +1,7 @@
 - hosts: localhost
   connection: local
   tasks:
-    - name: create jumphost in tower
+    - name: create ssh config for jumphost in tower
       shell: 
         cmd: |
           cat <<EOF > ~/.ssh/config
@@ -17,7 +17,7 @@
            IdentityFile ~/.ssh/openstack.pem
            ProxyCommand ssh -F ./ssh.cfg cloud-user@workstation-bcff.rhpds.opentlc.com -W %h:%p -vvv
            StrictHostKeyChecking no
-           EOF
+          EOF
 
 - hosts: jumpbox
   gather_facts: false
