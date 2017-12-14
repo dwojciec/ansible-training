@@ -62,32 +62,27 @@
   hosts: appdbs:apps:frontends
   gather_facts: false # remove later! speeds up testing
   become: true
-  tasks:
-    - include_role:
-        name: common
+  roles:
+    - common
 
 - name: configure dbserver
   hosts: appdbs
   gather_facts: false # remove later! speeds up testing
   become: true
-  tasks:
-    - include_role:
-        name: dbserver
+  roles:
+    - dbserver
 
 - name: configure wasserver and webserver
   hosts: apps
   gather_facts: false # remove later! speeds up testing
   become: true
-  tasks:
-    - include_role:
-        name: wasserver
-    - include_role:
-        name: webserver
+  roles:
+    - wasserver
+    - webserver
 
 - name: configure frontends
   hosts: frontends
   gather_facts: false # remove later! speeds up testing
   become: true
-  tasks:
-    - include_role:
-        name: proxy
+  roles:
+    - proxy
