@@ -54,6 +54,7 @@
   hosts: frontends
   gather_facts: false # remove later! speeds up testing
   become: true
-  - include_role:
-      name: proxy
-    delegate_to: workstation-bcff.rhpds.opentlc.com
+  tasks:
+    - include_role:
+        name: proxy
+      delegate_to: workstation-bcff.rhpds.opentlc.com
