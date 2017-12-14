@@ -1,3 +1,23 @@
+- host: localhost
+  connection: local
+  tasks:
+    - name: create jumphost in tower
+      shell: |
+        echo "
+Host workstation-bcff.rhpds.opentlc.com
+ Hostname workstation-bcff.rhpds.opentlc.com
+ IdentityFile ~/.ssh/openstack.pem
+ ForwardAgent yes
+ User cloud-user
+ StrictHostKeyChecking no
+ PasswordAuthentication no
+
+Host 10.10.10.*
+ User cloud-user
+ IdentityFile ~/.ssh/openstack.pem
+ ProxyCommand ssh -F ./ssh.cfg cloud-user@workstation-bcff.rhpds.opentlc.com -W %h:%p -vvv
+ StrictHostKeyChecking no" > ~/.ssh/config
+
 - hosts: jumpbox
   gather_facts: false
   tasks:
@@ -16,49 +36,37 @@
         name: "{{ item.public_v4 }}"
         group: "{{ item.metadata.deployment_name }}"
       with_items: "{{result.ansible_facts.openstack_servers}}"
-    - name: apply common role to all instances
-      become: true
-      include_role:
-        name: common
-      delegate_to: "{{item.public_v4}}"
-      remote_user: cloud-user
-      with_items: "{{result.ansible_facts.openstack_servers}}"
 
-#- name: configuration
-#  #hosts: appdbs:apps:frontends
-#  hosts: jumpbox
-#  gather_facts: false # remove later! speeds up testing
-#  become: true
-#  tasks:
-#    - include_role:
-#        name: common
-#      delegate_to: "{{item}}"
-#    with_items:
-#      - "{{ hostvars[''] }} "
-#
-#- name: configure dbserver
-#  hosts: appdbs
-#  gather_facts: false # remove later! speeds up testing
-#  become: true
-#  tasks:
-#    - include_role:
-#        name: dbserver
-#
-#- name: configure wasserver and webserver
-#  hosts: apps
-#  gather_facts: false # remove later! speeds up testing
-#  become: true
-#  tasks:
-#    - include_role:
-#        name: wasserver
-#      delegate_to: workstation-bcff.rhpds.opentlc.com
-#    - include_role:
-#        name: webserver
-#
-#- name: configure frontends
-#  hosts: frontends
-#  gather_facts: false # remove later! speeds up testing
-#  become: true
-#  tasks:
-#    - include_role:
-#        name: proxy
+- name: configuration
+  hosts: appdbs:apps:frontends
+  gather_facts: false # remove later! speeds up testing
+  become: true
+  tasks:
+    - include_role:
+        name: common
+
+- name: configure dbserver
+  hosts: appdbs
+  gather_facts: false # remove later! speeds up testing
+  become: true
+  tasks:
+    - include_role:
+        name: dbserver
+
+- name: configure wasserver and webserver
+  hosts: apps
+  gather_facts: false # remove later! speeds up testing
+  become: true
+  tasks:
+    - include_role:
+        name: wasserver
+    - include_role:
+        name: webserver
+
+- name: configure frontends
+  hosts: frontends
+  gather_facts: false # remove later! speeds up testing
+  become: true
+  tasks:
+    - include_role:
+        name: proxy
