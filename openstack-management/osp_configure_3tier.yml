@@ -6,7 +6,7 @@
         content: |
           Hostname workstation-bcff.rhpds.opentlc.com
           IdentityFile ~/.ssh/openstack.pem
-        dest: /var/lib/awx/.ssh/config
+        dest: "/var/lib/awx/.ssh/config"
           
 #    - name: create ssh config for jumphost in tower
 #      command: |
