@@ -26,5 +26,6 @@
         var: webpage
     - name: Fail if host address is not in the page content
       fail:
-      when: "'10.10.10' not in webpage.results.content"
+          #when: "'10.10.10' not in webpage.results.content"
+      when: webpage.results.status is not 200
 
