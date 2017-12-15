@@ -6,9 +6,9 @@
         cloud: ospcloud
         region_name: RegionOne
       register: result
-    - name: print groups
-      debug:
-        var: groups
+#    - name: print groups
+#      debug:
+#        var: groups
     - name: Add host to
       add_host:
         name: "{{ item.public_v4 }}"
@@ -24,14 +24,13 @@
 #      until: webpage.status == "200"
 #      retries: 2
 #      delay: 5 
-    - name: print webpage
-      debug:
-        var: webpage
-    - name: print webpage content
-      debug:
-        var: webpage.results[0].content
+#    - name: print webpage
+#      debug:
+#        var: webpage
+#    - name: print webpage content
+#      debug:
+#        var: webpage.results[0].content
     - name: Fail if host address is not in the page content
       fail:
       when: "'Ansible' not in webpage.results[0].content"
- #    when: "'200' not in webpage.results.status"
 

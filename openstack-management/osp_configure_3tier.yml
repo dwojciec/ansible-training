@@ -17,6 +17,7 @@
            IdentityFile ~/.ssh/openstack.pem
            ProxyCommand ssh cloud-user@workstation-bcff.rhpds.opentlc.com -W %h:%p -vvv
            StrictHostKeyChecking no
+#        dest: "./ssh.cfg"
         dest: "/var/lib/awx/.ssh/config"
         mode: 0400
           
