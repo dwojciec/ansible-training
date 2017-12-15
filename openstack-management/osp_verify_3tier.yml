@@ -21,7 +21,7 @@
       with_items:
         - "{{ groups['frontends']}}"
       register: webpage
-      until: result.status == "200"
+      until: webpage.status == "200"
       retries: 5
       delay: 30
   #    - name: print webpage
