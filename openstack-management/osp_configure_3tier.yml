@@ -5,8 +5,9 @@
     - name: create ssh config for jumphost in tower
       copy:
         content: |
-          Hostname workstation-bcff.rhpds.opentlc.com
-          IdentityFile ~/.ssh/openstack.pem
+          Host 10.10.10.*
+           Hostname workstation-bcff.rhpds.opentlc.com
+           IdentityFile ~/.ssh/openstack.pem
            ForwardAgent yes
            User cloud-user
            StrictHostKeyChecking no
