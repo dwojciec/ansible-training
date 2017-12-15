@@ -23,5 +23,5 @@
       register: webpage
     - name: Fail if ANSIBLE is not in the page content
       fail:
-      when: "'ANSIBLE' not in webpage.content"
+      when: "'Ansible' not in webpage.content"
 
