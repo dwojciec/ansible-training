@@ -6,6 +6,9 @@
         cloud: ospcloud
         region_name: RegionOne
       register: result
+    - name: print groups
+      debug:
+        var: "{{groups['frontends'] }}"
     - name: Verify service
       uri:
         url: "http://{{ hostvars[ item ]['inventory_hostname']}}"
