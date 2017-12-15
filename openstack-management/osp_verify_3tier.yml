@@ -29,7 +29,7 @@
         var: webpage
     - name: print webpage content
       debug:
-        var: webpage.results.content
+        var: webpage.results[0]
  #  - name: Fail if host address is not in the page content
  #    fail:
  #        #when: "'10.10.10' not in webpage.results.content"
