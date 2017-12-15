@@ -30,8 +30,8 @@
     - name: print webpage content
       debug:
         var: webpage.results[0].content
- #  - name: Fail if host address is not in the page content
- #    fail:
- #        #when: "'10.10.10' not in webpage.results.content"
+   - name: Fail if host address is not in the page content
+     fail:
+     when: "'Ansible' not in webpage.results.content"
  #    when: "'200' not in webpage.results.status"
 
