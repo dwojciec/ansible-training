@@ -1,6 +1,7 @@
 - hosts: jumpbox
   gather_facts: false
   vars:
+    dead_or_alive: present
     the3tier_info:
         - { name: 'app1', group: 'apps' }
         - { name: 'app2', group: 'apps' }
@@ -13,6 +14,7 @@
     os_server:
       cloud: ospcloud
       name: "{{ item.name }}"
+      state: "{{ dead_or_alive }} == 'present'"
       image: small-rhel
       meta: "group={{ item.group }},deployment_name={{ deployment }}"
       flavor: "{{ flavor_name }}"
@@ -39,6 +41,7 @@
       timeout: 180
     register: server_info
     with_items: "{{ the3tier_info }}"
+    when: "{{ dead_or_alive }} == 'present'"
       
 
       #  - name: Show server public IP
