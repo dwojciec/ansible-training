@@ -11,8 +11,8 @@
         url: "http://{{ hostvars['frontend']['inventory_hostname']}}"
         return_content: yes
       register: webpage
-     - name: Fail if ANSIBLE is not in the page content
-       fail:
-       when: "'ANSIBLE' not in webpage.content"
+    - name: Fail if ANSIBLE is not in the page content
+      fail:
+      when: "'ANSIBLE' not in webpage.content"
 
 
