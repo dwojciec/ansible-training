@@ -21,10 +21,10 @@
       with_items:
         - "{{ groups['frontends']}}"
       register: webpage
-    - name: print groups
+    - name: print webpage
       debug:
         var: webpage
-    - name: Fail if ANSIBLE is not in the page content
+    - name: Fail if host address is not in the page content
       fail:
-      when: "'Ansible' not in webpage.content"
+      when: "'10.10.10' not in webpage.content"
 
