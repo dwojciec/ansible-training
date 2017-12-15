@@ -8,8 +8,10 @@
       register: result
     - name: Verify service
       uri:
-        url: "http://{{ hostvars['10.10.10.8']['inventory_hostname']}}"
+        url: "http://{{ hostvars[ item ]['inventory_hostname']}}"
         return_content: yes
+      with_items:
+        - "{{ groups['frontends']}}"
       register: webpage
     - name: Fail if ANSIBLE is not in the page content
       fail:
