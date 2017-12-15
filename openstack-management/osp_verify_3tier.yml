@@ -8,11 +8,11 @@
       register: result
     - name: Add host to
       uri:
-        url: "http://{{ hostvars['frontend']['inventory_hostname']}}"
+        url: "http://{{ hostvars[item]['inventory_hostname']}}"
         return_content: yes
+      with_items: "{{groups['frontends']}}"
       register: webpage
     - name: Fail if ANSIBLE is not in the page content
       fail:
       when: "'ANSIBLE' not in webpage.content"
-
 
