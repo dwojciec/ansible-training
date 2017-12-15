@@ -22,8 +22,8 @@
         - "{{ groups['frontends']}}"
       register: webpage
       until: webpage.status == "200"
-      retries: 5
-      delay: 30
+      retries: 2
+      delay: 5 
   #    - name: print webpage
   #    debug:
   #      var: webpage
