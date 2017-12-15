@@ -8,7 +8,7 @@
       register: result
     - name: print groups
       debug:
-        var: "{{groups['frontends'] }}"
+        var: "{{groups }}"
     - name: Verify service
       uri:
         url: "http://{{ hostvars[ item ]['inventory_hostname']}}"
