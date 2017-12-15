@@ -21,11 +21,14 @@
       with_items:
         - "{{ groups['frontends']}}"
       register: webpage
-    - name: print webpage
-      debug:
-        var: webpage
-    - name: Fail if host address is not in the page content
-      fail:
-          #when: "'10.10.10' not in webpage.results.content"
-      when: "'200' not in webpage.results.status"
+      until: result.status == "200"
+      retries: 5
+      delay: 30
+  #    - name: print webpage
+  #    debug:
+  #      var: webpage
+  #  - name: Fail if host address is not in the page content
+  #    fail:
+  #        #when: "'10.10.10' not in webpage.results.content"
+  #    when: "'200' not in webpage.results.status"
 
