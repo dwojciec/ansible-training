@@ -11,3 +11,17 @@ Day1 lab
 Day2 lab
 - this project creates openstack instance in openstack lab
 detailed about playbooks
+
+## Windows Management
+Day3 lab
+- manage windows node with ansible
+
+## Tower HA
+Day4 lab
+- install tower cluster
+- configure tower HA
+
+## Dynamic Inventory
+Day5 lab
+- manage various cloud infra including AWS
+- dynamic inventory

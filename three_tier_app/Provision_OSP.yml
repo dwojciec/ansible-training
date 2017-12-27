@@ -1,7 +1,9 @@
 - hosts: jumpbox
   gather_facts: true
+  vars:
+    - dead_or_alive: present
   roles:
-    - osp_infra
+    - { role: osp_infra, when: dead_or_alive == 'present' }
 
 - hosts: jumpbox
   gather_facts: false
