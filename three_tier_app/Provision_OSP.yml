@@ -1,4 +1,9 @@
 - hosts: jumpbox
+  gather_facts: true
+  roles:
+    - osp_infra
+
+- hosts: jumpbox
   gather_facts: false
   vars:
     dead_or_alive: present
@@ -7,21 +12,27 @@
         - { name: 'app2', group: 'apps' }
         - { name: 'frontend', group: 'frontends' }
         - { name: 'appdb1', group: 'appdbs'}
+    cloud_name: ospcloud
     flavor_name: m2.small
     deployment: dev
+    image_name: rhel-guest
+    sec_group: ICMP_and_SSH
+    net_int: int_network
+    net_ext: ext_network
+    key_name: ansible_ssh
   tasks:
   - name: Create a server instance
     os_server:
-      cloud: ospcloud
+      cloud: "{{ cloud_name }}"
       name: "{{ item.name }}"
-      state: "{{ dead_or_alive }} == 'present'"
-      image: small-rhel
+      state: "{{ dead_or_alive }}"
+      image: "{{ image_name }}"
       meta: "group={{ item.group }},deployment_name={{ deployment }}"
       flavor: "{{ flavor_name }}"
-      security_groups: ICMP_and_SSH
-      key_name: ansible_ssh
+      security_groups: "{{ sec_group }}"
+      key_name: "{{ key_name }}"
       nics:
-      - net-name: int_network
+      - net-name: "{{ net_int }}"
       userdata: |
         #!/bin/bash
         curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
@@ -32,16 +43,16 @@
 
   - name: Add floating IP to webserver
     os_floating_ip:
-      cloud: ospcloud
+      cloud: "{{ cloud_name }}"
       state: present
       reuse: yes
       server: "{{ item.name }}"
-      network: ext_network
+      network: "{{ net_ext }}"
       wait: true
       timeout: 180
     register: server_info
     with_items: "{{ the3tier_info }}"
-    when: "{{ dead_or_alive }} == 'present'"
+    when: "dead_or_alive == 'present'"
       
 
       #  - name: Show server public IP

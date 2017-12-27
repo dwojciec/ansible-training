@@ -1,12 +1,14 @@
 - hosts: localhost
   connection: local
   gather_facts: false
+  vars:
+    OSPGUID: 5836  ### this value should be gotten from extra_vars
   tasks:
     - name: create ssh config for jumphost in tower
       copy:
         content: |
-          Host workstation-bcff.rhpds.opentlc.com
-           Hostname workstation-bcff.rhpds.opentlc.com
+          Host workstation-{{ OSPGUID }}.rhpds.opentlc.com
+           Hostname workstation-{{ OSPGUID }}.rhpds.opentlc.com
            IdentityFile ~/.ssh/openstack.pem
            ForwardAgent yes
            User cloud-user
@@ -15,31 +17,12 @@
           Host 10.10.10.*
            User cloud-user
            IdentityFile ~/.ssh/openstack.pem
-           ProxyCommand ssh cloud-user@workstation-bcff.rhpds.opentlc.com -W %h:%p -vvv
+           ProxyCommand ssh cloud-user@workstation-{{ OSPGUID }}.rhpds.opentlc.com -W %h:%p -vvv
            StrictHostKeyChecking no
-#        dest: "./ssh.cfg"
-        dest: "/var/lib/awx/.ssh/config"
+        dest: "./ssh.cfg"
+#        dest: "/var/lib/awx/.ssh/config"
         mode: 0400
-          
-    - name: where am i
-      command: "ls -al"
-#    - name: create ssh config for jumphost in tower
-#      shell: 
-#        cmd: |
-#          cat <<EOF > ssh2.cfg
-#          Host workstation-bcff.rhpds.opentlc.com
-#           Hostname workstation-bcff.rhpds.opentlc.com
-#           IdentityFile ~/.ssh/openstack.pem
-#           ForwardAgent yes
-#           User cloud-user
-#           StrictHostKeyChecking no
-#           PasswordAuthentication no
-#          Host 10.10.10.*
-#           User cloud-user
-#           IdentityFile ~/.ssh/openstack.pem
-#           ProxyCommand ssh -F ssh2.cfg cloud-user@workstation-bcff.rhpds.opentlc.com -W %h:%p -vvv
-#           StrictHostKeyChecking no
-#           EOF
+
 
 - hosts: jumpbox
   gather_facts: false
@@ -88,3 +71,18 @@
   become: true
   roles:
     - proxy
+
+- name: smoking test 
+  hosts: jumpbox
+  tasks:
+    - name: connection test to frontend
+      uri:
+        url: "http://{{ hostvars[ item ]['inventory_hostname']}}"
+        return_content: yes
+      with_items:
+        - "{{ groups['frontends']}}"
+      register: webpage
+
+    - name: Fail if 'Ansible' string is not in the page content
+      fail:
+      when: "'Ansible' not in webpage.results[0].content"

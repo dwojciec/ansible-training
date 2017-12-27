@@ -1,4 +1,5 @@
-# openstack-management
+# three tier apps for ansible adv training
+- date: 2017.12.04
 
 below is the detailed explaination for each playbook.
 
