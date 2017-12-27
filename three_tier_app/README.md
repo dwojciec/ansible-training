@@ -13,7 +13,7 @@
 
 ## Ansible Tower Workflow Templates
 
-=====
+-----
 below is the detailed explaination for each playbook.
 
 - osp_configure_3tier.yml[osp_configure_3tier.yml]
