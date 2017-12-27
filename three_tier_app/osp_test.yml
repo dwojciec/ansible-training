@@ -3,20 +3,20 @@
   tasks:
    - name: Fetch Instance Info
      os_server_facts:
-      cloud: ospcloud
-      region_name: RegionOne
+       cloud: ospcloud
+       region_name: RegionOne
      register: result
    - name: Add host to
      add_host:
-      name: "{{ item.public_v4 }}"
-      group: "{{ item.metadata.group }}"
-      fip: "{{ item.public_v4 }}"
-      pip: "{{ item.private_v4 }}"
+       name: "{{ item.public_v4 }}"
+       group: "{{ item.metadata.group }}"
+       fip: "{{ item.public_v4 }}"
+       pip: "{{ item.private_v4 }}"
      with_items: "{{result.ansible_facts.openstack_servers}}"
    - name: Add host
      add_host:
-      name: "{{ item.public_v4 }}"
-      group: "{{ item.metadata.deployment_name }}"
+       name: "{{ item.public_v4 }}"
+       group: "{{ item.metadata.deployment_name }}"
      with_items: "{{result.ansible_facts.openstack_servers}}"
 
 - name: configure frontends
