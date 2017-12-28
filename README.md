@@ -13,6 +13,7 @@
 ## Provision QA Environment (Including smoke test)
 ### Creating Open Stack instances
 - preparation to ssh: ssh.cfg is needed to connect to jumpbox so this file can be made by playbook.
+  - file: Initailize_ssh.yml[](Initailize_ssh.yml)
 - instances: 
   - apps(app1, app2)
   - appdbs(appdb1)
