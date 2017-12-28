@@ -15,6 +15,8 @@
 ### Creating Open Stack instances
 - preparation to ssh: ssh.cfg is needed to connect to jumpbox so this file can be made by playbook.
   - file: [Initailize_ssh.yml](Initailize_ssh.yml)
+- ssh.cfg can't be saved on Tower in default, so in Tower "SETTING / CONFIGURATION / JOBS", 'ENABLE JOB ISOLATION' should be 'OFF'. 
+  - ![disable_job_isolation](files/Disable_Job_Isolation.png)
 - instances: 
   - apps(app1, app2)
   - appdbs(appdb1)
@@ -33,6 +35,7 @@
 - To deploy 3 tier app, same file[Configure_3TA_OSP.yml](Configure_3TA_OSP.yml) is used.
 
 ## Ansible Tower Workflow Templates
+  > workflow process is compromised because to create and destroy AWS instances is not possible.
 ### Workflow steps
   1. initialize ssh connection environment
   1. provision instances on openstack
