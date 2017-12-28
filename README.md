@@ -4,6 +4,7 @@
 ## Environment
 - OSP workstation: workstation.5836.rhpds.opentlc.com
 - Prod bastion: bastion.2a2a.example.opentlc.com
+- Tower: https://tower1.2a2a.example.opentlc.com
 
 ## Basic Requirement
 - git repository: https://github.com/hatsari/ansible-training.git
@@ -19,10 +20,17 @@
   - appdbs(appdb1)
   - frontends(frontend)
 - using same playbook, instances can be created or deleted depending on extra variable(dead_or_alive)
+  - file: [Provision_OSP.yml](Provision_OSP.yml)
 ### deploying 3tier app
+- 3tier apps can be deploy on dev or production switching the tower's inventory
+- 3tier apps are configures in each role.
+- smoke test is performed using URI module
+  - file: [Configure_3TA_OSP.yml](Configure_3TA_OSP.yml)
 
 ## Provision Production Environment (Including smoke test)
-- 3tier apps can be deploy on dev or production switching the tower's inventory
+- assuming that each instances are provisioned already.
+- configured in tower inventory(Prod_Inventory) as static inventory.
+- To deploy 3 tier app, same file(Configure_3TA_OSP.yml) is used.
 
 ## Ansible Tower Workflow Templates
 ### Workflow steps
