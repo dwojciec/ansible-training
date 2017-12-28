@@ -30,16 +30,16 @@
 ## Provision Production Environment (Including smoke test)
 - assuming that each instances are provisioned already.
 - configured in tower inventory(Prod_Inventory) as static inventory.
-- To deploy 3 tier app, same file(Configure_3TA_OSP.yml) is used.
+- To deploy 3 tier app, same file[Configure_3TA_OSP.yml](Configure_3TA_OSP.yml) is used.
 
 ## Ansible Tower Workflow Templates
 ### Workflow steps
-  * initialize ssh connection environment
-  * provision instances on openstack
-  * deploy 3tier apps and verify the service using in-memory inventory
-	* if smoke test failed, destory instances on openstack
-  * deploy 3tier apps and verify the service using tower static inventory
-    * if smoke test failed, clear 3tier apps 
+  1. initialize ssh connection environment
+  1. provision instances on openstack
+  1. deploy 3tier apps and verify the service using in-memory inventory
+	1. if smoke test failed, destory instances on openstack
+  1. deploy 3tier apps and verify the service using tower static inventory
+    1. if smoke test failed, clear 3tier apps 
 
 -----
 below is the detailed explaination for each playbook.
