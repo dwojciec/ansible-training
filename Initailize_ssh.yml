@@ -18,7 +18,7 @@
           Host 10.10.10.*
            User cloud-user
            IdentityFile ~/.ssh/openstack.pem
-           ProxyCommand ssh -F ./ssh.cfg cloud-user@workstation-{{ OSPGUID }}.rhpds.opentlc.com -W %h:%p -vvv
+           ProxyCommand ssh -F ./ssh.cfg cloud-user@workstation-{{ OSPGUID }}.rhpds.opentlc.com -W %h:%p -v
            StrictHostKeyChecking no
         dest: "./ssh.cfg"
 #        dest: "/var/lib/awx/.ssh/config"
