@@ -23,6 +23,11 @@
   - frontends(frontend)
 - using same playbook, instances can be created or deleted depending on extra variable(dead_or_alive)
   - file: [Provision_OSP.yml](Provision_OSP.yml)
+  - ext_var: 
+    - dead_or_alive:
+	  - present
+	  - absent
+	  
 ### deploying 3tier app
 - 3tier apps can be deploy on dev or production switching the tower's inventory
 - 3tier apps are configures in each role.
