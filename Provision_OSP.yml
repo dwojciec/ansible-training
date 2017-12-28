@@ -12,7 +12,7 @@
     the3tier_info:
         - { name: 'app1', group: 'apps' }
         - { name: 'app2', group: 'apps' }
-        - { name: 'frontend', group: 'frontends' }
+        - { name: 'frontend1', group: 'frontends' }
         - { name: 'appdb1', group: 'appdbs'}
     cloud_name: ospcloud
     flavor_name: m2.small
