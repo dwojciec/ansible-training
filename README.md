@@ -16,7 +16,7 @@
 - preparation to ssh: ssh.cfg is needed to connect to jumpbox so this file can be made by playbook.
   - file: [Initailize_ssh.yml](Initailize_ssh.yml)
 - ssh.cfg can't be saved on Tower in default, so in Tower "SETTING / CONFIGURATION / JOBS", 'ENABLE JOB ISOLATION' should be 'OFF'. 
-  - ![disable_job_isolation](files/Disable_Job_Isolation.png | width=25)
+  - ![disable_job_isolation](https://github.com/hatsari/ansible-training/blob/master/files/Disable_Job_Isolation.png | width=25)
 - instances: 
   - apps(app1, app2)
   - appdbs(appdb1)
