@@ -37,9 +37,9 @@
   1. initialize ssh connection environment
   1. provision instances on openstack
   1. deploy 3tier apps and verify the service using in-memory inventory
-	1. if smoke test failed, destory instances on openstack
+	 1. if smoke test failed, destory instances on openstack
   1. deploy 3tier apps and verify the service using tower static inventory
-    1. if smoke test failed, clear 3tier apps 
+     1. if smoke test failed, clear 3tier apps 
 
 -----
 below is the detailed explaination for each playbook.
