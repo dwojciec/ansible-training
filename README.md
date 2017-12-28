@@ -32,7 +32,7 @@
 ## Provision Production Environment (Including smoke test)
 - assuming that each instances are provisioned already.
 - configured in tower inventory(Prod_Inventory) as static inventory.
-- To deploy 3 tier app, same file[Configure_3TA_OSP.yml](Configure_3TA_OSP.yml) is used.
+- To deploy 3 tier app, same file [Configure_3TA_OSP.yml](Configure_3TA_OSP.yml)  is used.
 
 ## Ansible Tower Workflow Templates
   > workflow process is compromised because to create and destroy AWS instances is not possible.
