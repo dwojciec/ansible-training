@@ -27,12 +27,12 @@
 - 3tier apps can be deploy on dev or production switching the tower's inventory
 - 3tier apps are configures in each role.
 - smoke test is performed using URI module
-  - file: [Configure_3TA_OSP.yml](Configure_3TA_OSP.yml)
+  - file: [Configure_3TA_OSP.yml](Configure_3TA.yml)
 
 ## Provision Production Environment (Including smoke test)
 - assuming that each instances are provisioned already.
 - configured in tower inventory(Prod_Inventory) as static inventory.
-- To deploy 3 tier app, same file [Configure_3TA_OSP.yml](Configure_3TA_OSP.yml)  is used.
+- To deploy 3 tier app, same file [Configure_3TA_OSP.yml](Configure_3TA.yml)  is used.
 
 ## Ansible Tower Workflow Templates
   > workflow process is compromised because to create and destroy AWS instances is not possible.
