@@ -40,15 +40,14 @@
   - like explained above, it operates with extra_vars
   
 ## Provision Production Environment (Including smoke test)
-### Creating AWS instances
+### Creating AWS instances on PRD
 - assuming that each instances are provisioned already.
 - configured in tower inventory(Prod_Inventory) as static inventory.
 - To deploy 3 tier app, same file [Configure_3TA_OSP.yml](Configure_3TA.yml)  is used.
 
-### Clearing 3tier app on Prod
+### Clearing 3tier app on PRD
 - not delete instances, just stop services and remove packages
-- playbook: [Clear.yml](Provision_OSP.yml)
-  - like explained above, it operates with extra_vars
+- playbook: [Clean_3tier.yml](Clean_3tier.yml)
 
 ## Ansible Tower Workflow Templates
   > workflow process is compromised because to create and destroy AWS instances is not possible.
