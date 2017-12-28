@@ -14,7 +14,7 @@
 ## Provision QA Environment (Including smoke test)
 ### Creating Open Stack instances
 - preparation to ssh: ssh.cfg is needed to connect to jumpbox so this file can be made by playbook.
-  - file: [Initailize_ssh.yml](Initailize_ssh.yml)
+  - playbook: [Initailize_ssh.yml](Initailize_ssh.yml)
 - ssh.cfg can't be saved on Tower in default, so in Tower "SETTING / CONFIGURATION / JOBS", 'ENABLE JOB ISOLATION' should be 'OFF'. 
   - ![disable_job_isolation]( files/1.png )
 - instances: 
@@ -22,22 +22,33 @@
   - appdbs(appdb1)
   - frontends(frontend)
 - using same playbook, instances can be created or deleted depending on extra variable(dead_or_alive)
-  - file: [Provision_OSP.yml](Provision_OSP.yml)
+  - playbook: [Provision_OSP.yml](Provision_OSP.yml)
   - ext_var: 
     - dead_or_alive:
-	  - present
-	  - absent
+	  - present # when creating instances
+	  - absent  # when deleting instances
 	  
-### deploying 3tier app
+### Deploying 3tier app on DEV
 - 3tier apps can be deploy on dev or production switching the tower's inventory
 - 3tier apps are configures in each role.
 - smoke test is performed using URI module
-  - file: [Configure_3TA_OSP.yml](Configure_3TA.yml)
+  - playbook: [Configure_3TA_OSP.yml](Configure_3TA.yml)
 
+### Destroying Instances on DEV
+- Destory all instances
+- playbook: [Provision_OSP.yml](Provision_OSP.yml)
+  - like explained above, it operates with extra_vars
+  
 ## Provision Production Environment (Including smoke test)
+### Creating AWS instances
 - assuming that each instances are provisioned already.
 - configured in tower inventory(Prod_Inventory) as static inventory.
 - To deploy 3 tier app, same file [Configure_3TA_OSP.yml](Configure_3TA.yml)  is used.
+
+### Clearing 3tier app on Prod
+- not delete instances, just stop services and remove packages
+- playbook: [Clear.yml](Provision_OSP.yml)
+  - like explained above, it operates with extra_vars
 
 ## Ansible Tower Workflow Templates
   > workflow process is compromised because to create and destroy AWS instances is not possible.
