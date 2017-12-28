@@ -15,11 +15,14 @@
             name: "{{ item.public_v4 }}"
             group: "{{ item.metadata.group }}"
           with_items: "{{result.ansible_facts.openstack_servers}}"
+          changed_when: false
+          
         - name: Add host
           add_host:
             name: "{{ item.public_v4 }}"
             group: "{{ item.metadata.deployment_name }}"
           with_items: "{{result.ansible_facts.openstack_servers}}"
+          changed_when: false
       when: hostvars['app1'] is undefined
       
 - name: configuration
@@ -64,4 +67,5 @@
 
     - name: Fail if 'Ansible' string is not in the page content
       fail:
+        msg: "smoking test is failed, all instance will be destroyed"
       when: "'Ansible' not in webpage.results[0].content"
