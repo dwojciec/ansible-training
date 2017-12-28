@@ -50,11 +50,6 @@
      1. if smoke test failed, clear 3tier apps 
 
 -----
-below is the detailed explaination for each playbook.
+The 3 Tier Apps Workflow
 
-- osp_configure_3tier.yml[osp_configure_3tier.yml]
-- osp_create_instances.yml
-- osp_create_multi_instances.yml
-- osp_create_network.yml
-- osp_create_security.yml 
-- osp_flavor.yml
+![three_tier_workflow](files/the3tier_workflow.png)
