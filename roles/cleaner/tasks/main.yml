@@ -1,6 +1,4 @@
 ---
-# Initial, common, system setup steps
-
 - name: reverse the enabling of sudo without tty for some ansible commands
   replace:
     path: /etc/sudoers
@@ -12,6 +10,16 @@
   file:
     state: absent
     path: /etc/yum.repos.d/open_three-tier-app.repo
+
+- name: remove base tools and three tier app packages
+  service:
+    name: "{{ item }}"
+    state: stopped
+  with_items:
+    - httpd
+    - haproxy
+    - tomcat
+    - postgresql
 
 - name: remove base tools and three tier app packages
   yum:
