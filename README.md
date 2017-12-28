@@ -1,27 +1,36 @@
-# ansible advanced training
-- date: 2017. 12.11 - 15
-- venue: RH office 10th, Singapore
+# three tier app CI/CD for Mizi telecom
+- date: 2017.12.25
 
-## 3tier-bad
-Day1 lab
-- fix the bad playbook
-- refactor codes
+## Basic Requirement
+- git repository: https://github.com/hatsari/ansible-training/tree/master/three_tier_app
+- Playbooks to deploy internal 3-tier app
+- Install HA Ansible Tower
 
-## openstack-management
-Day2 lab
-- this project creates openstack instance in openstack lab
-detailed about playbooks
+## Provision QA Environment (Including smoke test)
+### Creating Open Stack instances
+- preparation to ssh: ssh.cfg is needed to connect to jumpbox so this file can be made by playbook.
+- instances: apps(app1, app2), appdbs(appdb1), frontends(frontend)
+- using same playbook, instances can be created or deleted depending on extra variable(dead_or_alive)
+### deploying 3tier app
 
-## Windows Management
-Day3 lab
-- manage windows node with ansible
+## Provision Production Environment (Including smoke test)
+- 3tier apps can be deploy on dev or production switching the tower's inventory
 
-## Tower HA
-Day4 lab
-- install tower cluster
-- configure tower HA
+## Ansible Tower Workflow Templates
+### Workflow steps
+  * initialize ssh connection environment
+  * provision instances on openstack
+  * deploy 3tier apps and verify the service using in-memory inventory
+	* if smoke test failed, destory instances on openstack
+  * deploy 3tier apps and verify the service using tower static inventory
+    * if smoke test failed, clear 3tier apps 
 
-## Dynamic Inventory
-Day5 lab
-- manage various cloud infra including AWS
-- dynamic inventory
+-----
+below is the detailed explaination for each playbook.
+
+- osp_configure_3tier.yml[osp_configure_3tier.yml]
+- osp_create_instances.yml
+- osp_create_multi_instances.yml
+- osp_create_network.yml
+- osp_create_security.yml 
+- osp_flavor.yml
