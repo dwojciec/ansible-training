@@ -1,15 +1,22 @@
 # three tier app CI/CD for Mizi telecom
 - date: 2017.12.25
 
+## Environment
+- OSP workstation: workstation.5836.rhpds.opentlc.com
+- Prod bastion: bastion.2a2a.example.opentlc.com
+
 ## Basic Requirement
-- git repository: https://github.com/hatsari/ansible-training/tree/master/three_tier_app
+- git repository: https://github.com/hatsari/ansible-training.git
 - Playbooks to deploy internal 3-tier app
 - Install HA Ansible Tower
 
 ## Provision QA Environment (Including smoke test)
 ### Creating Open Stack instances
 - preparation to ssh: ssh.cfg is needed to connect to jumpbox so this file can be made by playbook.
-- instances: apps(app1, app2), appdbs(appdb1), frontends(frontend)
+- instances: 
+  - apps(app1, app2)
+  - appdbs(appdb1)
+  - frontends(frontend)
 - using same playbook, instances can be created or deleted depending on extra variable(dead_or_alive)
 ### deploying 3tier app
 
