@@ -3,7 +3,7 @@
   gather_facts: true
   become: false
   vars:
-    OSPGUID: 5836  ### this value should be gotten from extra_vars
+    OSPGUID: 00cf  ### this value should be gotten from extra_vars
   tasks:
     - name: create ssh config for jumphost in tower
       copy:
