@@ -14,7 +14,7 @@
 ## Provision QA Environment (Including smoke test)
 ### Creating Open Stack instances
 - preparation to ssh: ssh.cfg is needed to connect to jumpbox so this file can be made by playbook.
-  - playbook: [Initailize_ssh.yml](Initailize_ssh.yml)
+  - playbook: [Initialize_ssh.yml](Initialize_ssh.yml)
 - ssh.cfg can't be saved on Tower in default, so in Tower "SETTING / CONFIGURATION / JOBS", 'ENABLE JOB ISOLATION' should be 'OFF'. 
   - ![disable_job_isolation]( files/1.png )
 - instances: 
