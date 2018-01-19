@@ -1,13 +1,13 @@
 # three tier app CI/CD for Mizi telecom
-- date: 2017.12.25
+- date: 2018.01.19
 
 ## Environment
-- OSP workstation: workstation.5836.rhpds.opentlc.com
-- Prod bastion: bastion.2a2a.example.opentlc.com
-- Tower: https://tower1.2a2a.example.opentlc.com
+- OSP workstation: workstation.360b.rhpds.opentlc.com
+- Prod bastion: bastion.00cf.example.opentlc.com
+- Tower: https://tower1.00cf.example.opentlc.com
 
 ## Basic Requirement
-- git repository: https://github.com/hatsari/ansible-training.git
+- git repository: https://github.com/dwojciec/ansible-training.git
 - Playbooks to deploy internal 3-tier app
 - Install HA Ansible Tower
 
